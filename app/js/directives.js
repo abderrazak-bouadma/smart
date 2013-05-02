@@ -29,7 +29,29 @@ angular.module('parapheur.preference.directives', [])
             restrict:'E',
             template:'<li ng-repeat="element in preference.elements">' +
                     '<p>{{element.elementLabel}}</p>' +
-                    '<p>{{element.elementUIComponentType}}</p>' +
+                    '<div ng-switch on="element.elementUIComponentType">' +
+                        '<div ng-switch-when="DROPDOWN"><pcp-dropdown ng-model="element"/></div>'+
+                        '<div ng-switch-when="TEXT_FIELD"><pcp-textfield ng-model="element"/></div>'+
+                        '<div ng-switch-when="SWITCH"><pcp-switch ng-model="element"/></div>'+
+                    '</div>' +
                 '</li>'
+        }
+    })
+    .directive('pcpDropdown',function(){
+        return {
+            restrict:'E',
+            template:'<select><option>test dropdown</option></select>'
+        }
+    })
+    .directive('pcpTextfield',function(){
+        return {
+            restrict:'E',
+            template:'<input type="text" />'
+        }
+    })
+    .directive('pcpSwitch',function(){
+        return {
+            restrict:'E',
+            template:'<input type="checkbox" />'
         }
     });
