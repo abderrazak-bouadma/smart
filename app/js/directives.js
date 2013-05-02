@@ -28,7 +28,7 @@ angular.module('parapheur.preference.directives', [])
         return {
             restrict:'E',
             template:'<li ng-repeat="element in preference.elements">' +
-                    '<p>{{element.elementLabel}}</p>' +
+                    '<p><label for="">{{element.elementLabel}}</label></p>' +
                     '<div ng-switch on="element.elementUIComponentType">' +
                         '<div ng-switch-when="DROPDOWN"><pcp-dropdown ng-model="element"/></div>'+
                         '<div ng-switch-when="TEXT_FIELD"><pcp-textfield ng-model="element"/></div>'+
@@ -40,7 +40,7 @@ angular.module('parapheur.preference.directives', [])
     .directive('pcpDropdown',function(){
         return {
             restrict:'E',
-            template:'<select><option>test dropdown</option></select>'
+            template:'<select ng-options="d.value for c in element.data"></select>'
         }
     })
     .directive('pcpTextfield',function(){
