@@ -2,6 +2,11 @@
     <h1>{{greetingMessage}}</h1>
 </div>
 <div class="container">
+
+    <ul class="nav nav-tabs nav-stacked">
+        <pcp-preference />
+    </ul>
+
     <ul class="nav nav-tabs nav-stacked">
         <li ng-repeat="preference in preferences">
             <h4 style="color: #0077b3">{{preference.title}}&nbsp;»</h4>
