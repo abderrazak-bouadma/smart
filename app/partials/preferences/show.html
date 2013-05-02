@@ -1,0 +1,20 @@
+<div class="hero-unit">
+    <h1>{{greetingMessage}}</h1>
+</div>
+<div class="container">
+    <ul class="nav nav-tabs nav-stacked">
+        <li ng-repeat="preference in preferences">
+            <h4 style="color: #0077b3">{{preference.title}}&nbsp;»</h4>
+            <p style="color: #c4e3f3">{{preference.hint}}</p>
+            <div>
+                <ul class="nav nav-tabs nav-stacked">
+                    <li ng-repeat="element in preference.elements">
+                        <!-- Directive for PreferenceElement -->
+                        <p>{{element.elementLabel}}</p>
+                        <p>{{element.elementUIComponentType}}</p>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>

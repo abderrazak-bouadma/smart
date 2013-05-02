@@ -2,10 +2,8 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
-
-  }])
-  .controller('MyCtrl2', [function() {
-
-  }]);
+angular.module('parapheur.preference.controllers', []).
+  controller('PreferenceCtrl', function($scope,Preference) {
+        $scope.greetingMessage = 'Preferences Module'
+        $scope.preferences = Preference.query();
+  });
