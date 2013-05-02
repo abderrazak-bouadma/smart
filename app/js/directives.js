@@ -40,7 +40,12 @@ angular.module('parapheur.preference.directives', [])
     .directive('pcpDropdown',function(){
         return {
             restrict:'E',
-            template:'<select ng-options="d.value for c in element.data"></select>'
+            template:'<select ng-model="data" ng-change="update(element,data)" ng-options="d.value for d in element.data"></select>',
+            controller:function($scope) {
+                $scope.update = function(elm,data) {
+                    console.log(elm.command)
+                }
+            }
         }
     })
     .directive('pcpTextfield',function(){
