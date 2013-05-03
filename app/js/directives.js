@@ -18,7 +18,7 @@ angular.module('parapheur.preference.directives', [])
                     '<ul class="nav nav-tabs nav-stacked">'+
                         '<pcp-element ng-model="preference"/>'+
                     '</ul>'+
-                '</li>',
+                '<hr/></li>',
             link:function(scope,elm,attrs) {
                 scope.preferences = Preference.query();
             }
@@ -41,9 +41,10 @@ angular.module('parapheur.preference.directives', [])
         return {
             restrict:'E',
             template:'<select ng-model="data" ng-change="update(element,data)" ng-options="d.value for d in element.data"></select>',
-            controller:function($scope) {
+            controller:function($scope,$http) {
                 $scope.update = function(elm,data) {
-                    console.log(elm.command)
+                    elm.newValue = data
+                    $http.put('https://localhost/parapheur-ws/rest/v1/preferences?COMMAND='+elm.command,elm)
                 }
             }
         }
@@ -57,6 +58,12 @@ angular.module('parapheur.preference.directives', [])
     .directive('pcpSwitch',function(){
         return {
             restrict:'E',
-            template:'<input ng-model="data" type="checkbox" ng-change="update(element,data)" ng-checked="data.key">{{data.value}}</input>'
+            template:'<div><input ng-model="data" type="checkbox" ng-change="update(element,data)" ng-checked="data.key" ng-value="data.value" /><span class="text-info">{{element.data[0].value}}</span></div>',
+            controller:function($scope,$http) {
+                $scope.update = function(elm,data) {
+                    elm.newValue = data
+                    $http.put('https://localhost/parapheur-ws/rest/v1/preferences?COMMAND='+elm.command,elm)
+                }
+            }
         }
     });
