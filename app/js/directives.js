@@ -41,10 +41,10 @@ angular.module('parapheur.preference.directives', [])
         return {
             restrict:'E',
             template:'<select ng-model="data" ng-change="update(element,data)" ng-options="d.value for d in element.data"></select>',
-            controller:function($scope,$http) {
+            controller:function($scope,$http,serviceHostUrl) {
                 $scope.update = function(elm,data) {
                     elm.newValue = data
-                    $http.put('https://localhost/parapheur-ws/rest/v1/preferences?COMMAND='+elm.command,elm)
+                    $http.put(serviceHostUrl + '/preferences?COMMAND='+elm.command,elm)
                 }
             }
         }
@@ -53,7 +53,7 @@ angular.module('parapheur.preference.directives', [])
         return {
             restrict:'E',
             template:'<ul><li ng-repeat="d in element.data"><input type="text" ng-model="data" id="{{d.key}}" ng-value="d.value" ng-change="update(element,data)" /></li></ul>',
-            controller:function($scope,$http){
+            controller:function($scope,$http,serviceHostUrl){
                 $scope.update = function(elm,data) {
                     console.log('text field has value changed !')
                 }
@@ -64,10 +64,10 @@ angular.module('parapheur.preference.directives', [])
         return {
             restrict:'E',
             template:'<div><input ng-model="data" type="checkbox" ng-change="update(element,data)" ng-checked="data.key" ng-value="data.value" /><span class="text-info">{{element.data[0].value}}</span></div>',
-            controller:function($scope,$http) {
+            controller:function($scope,$http,serviceHostUrl) {
                 $scope.update = function(elm,data) {
                     elm.newValue = data
-                    $http.put('https://localhost/parapheur-ws/rest/v1/preferences?COMMAND='+elm.command,elm)
+                    $http.put(serviceHostUrl + '/preferences?COMMAND='+elm.command,elm)
                 }
             }
         }
