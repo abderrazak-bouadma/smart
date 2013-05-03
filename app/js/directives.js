@@ -52,7 +52,12 @@ angular.module('parapheur.preference.directives', [])
     .directive('pcpTextfield',function(){
         return {
             restrict:'E',
-            template:'<input type="text" />'
+            template:'<ul><li ng-repeat="d in element.data"><input type="text" ng-model="data" id="{{d.key}}" ng-value="d.value" ng-change="update(element,data)" /></li></ul>',
+            controller:function($scope,$http){
+                $scope.update = function(elm,data) {
+                    console.log('text field has value changed !')
+                }
+            }
         }
     })
     .directive('pcpSwitch',function(){
