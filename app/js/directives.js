@@ -57,6 +57,6 @@ angular.module('parapheur.preference.directives', [])
     .directive('pcpSwitch',function(){
         return {
             restrict:'E',
-            template:'<input type="checkbox" />'
+            template:'<input ng-model="data" type="checkbox" ng-change="update(element,data)" ng-checked="data.key">{{data.value}}</input>'
         }
     });
